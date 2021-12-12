@@ -1,0 +1,139 @@
+1. The design process involves following 4 stages.
+
+A)Research
+
+Research is the basic key step to design user experience.
+
+Design team does their research work to explore how the outer world is working
+on such features.
+
+Three purposes of this analysis:
+
+(i) Understand market competition
+
+(ii) Learn about your domain
+
+(iii) Get inspirations and ideas from your competitors
+
+Keep an eye on the latest UI trends, design principles and your existing user
+experience guidelines.
+
+While doing research, start thinking about possible layouts and options to
+provide the desired experience.
+
+B)Design
+
+Now you have finalized layout and flow of the required interface with you, the
+next step is to work on final graphics.
+
+Turn the initial mockups and wireframes to great-looking images with theme
+and styles applied to them.
+
+Preparing and sharing of design specifications (principles, guidelines, colors,
+typography, iconography) to Development team is also part of this stage.
+
+C)Evaluate
+
+When product features are implemented, the end product is evaluated based on
+few factors:
+
+. Whether the system is usable?
+
+. Is it easy to use for end user?
+
+. Is it flexible and easy to change?
+
+. Does it provide the desired solution to user’s problems?
+
+. Does the product have the credibility that makes someone want to use it
+
+because of the experience it provides?
+D) Implement
+Since technical people participate in early stages of the process, they can start
+implementation while Design phase is in progress.
+Development team builds back end functionality first and connects it with UI
+when they get design artifacts.
+It is better that Design team involves in this step to help development phase.
+While implementing, it is possible to raise the need of minor changes in design.
+2 Almost any design cycle for a new project, service, product, or feature starts
+with a discovery phase. During this phase, we usually collaborate with business
+and other stakeholders to:
+
+° research the landscape and gain insights about the current situation
+. define our challenge and frame the right problem to solve
+. collect insights and align on our first steps for the next phase
+
+There are many standard UX Methods and Activities, and I know from the
+experience I have with my students that it’s quite tricky for young designers to
+decide which would be the most appropriate to combine for each Design Phase.
+
+3
+
+Stakeholder Interviews
+
+Stakeholder Interviews are a common UX practice that provides us, UX
+practitioners, with insights about business goals, technical and other constraints,
+and help you understand your stakeholders’ current beliefs about the users.
+
+Competitive Analysis
+
+We conduct a competitive analysis by collecting and comparing data about
+competitors (products and companies).
+
+We use this method to examine, understand, and evaluate our direct and indirect
+competitors’ solutions, highlight products’ strengths and weaknesses, and make
+informed decisions about our product and design strategy.
+
+We usually apply this method during the discovery phase, but could also be
+introduced later in the design process.
+
+User Interviews & Field Studies/ Contextual Inquiries
+
+User Interviews is a qualitative research method that gives insights into users’
+attitudes, what they think about, a topic, website, app, service, or process. We
+may conduct User Interviews in a variety of situations and design phases. For
+example, in the discovery phase, we may conduct user interviews to inform
+personas, journey maps, features, and workflow ideas.
+
+We may decide to conduct the interviews in combination with a Contextual
+Inquiry Study by supplementing observation with descriptions of tools,
+processes, bottlenecks, and how users perceive them.
+
+Diary Studies
+
+A Diary Study can be qualitative or quantitative, depending on the project’s
+needs and the participants’ amount. In general, we conduct diary studies with at
+least 10 participants to understand long-term user behavior and experiences.
+The participants keep a diary and log specific information about the particular
+activities we study for a pre-defined period that can vary from a few days to
+even longer than a month.
+
+4 Quantitative data is anything that can be counted or measured; it refers to
+numerical data. Qualitative data is descriptive, referring to things that can be
+observed but not measured—such as colors or emotions.
+
+Quantitative data refers to any information that can be quantified. If it can be
+counted or measured, and given a numerical value, it’s quantitative data.
+Quantitative data can tell you “how many,” “how much,” or “how often”—for
+example, how many people attended last week’s webinar? How much revenue
+did the company make in 2019? How often does a certain customer group use
+online banking?
+
+To analyze and make sense of quantitative data, you’ ll conduct statistical
+analyses.
+
+Unlike quantitative data, qualitative data cannot be measured or counted. It’s
+descriptive, expressed in terms of language rather than numerical values.
+Researchers will often turn to qualitative data to answer “Why?” or “How?”
+questions. For example, if your quantitative data tells you that a certain website
+visitor abandoned their shopping cart three times in one week, you’d probably
+want to investigate why—and this might involve collecting some form of
+qualitative data from the user. Perhaps you want to know how a user feels about
+a particular product; again, qualitative data can provide such insights. In this
+case, you’re not just looking at numbers; you’re asking the user to tell you,
+using language, why they did something or how they feel.
+
+Qualitative data also refers to the words or labels used to describe certain
+characteristics or traits—for example, describing the sky as blue or labeling a
+particular ice cream flavor as vanilla.
+

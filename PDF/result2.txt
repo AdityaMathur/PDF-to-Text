@@ -1,0 +1,4645 @@
+Exercises Guide
+
+ 
+
+ 
+
+Exercise 7. Creating a machine
+learning model with Watson
+Knowledge Studio
+
+Estimated time
+
+01:15
+
+Overview
+
+This exercise helps you understand the process for building a machine learning model that you
+can later deploy and use with other Watson services.
+
+Objectives
+
+After completing this exercise you should be able to:
+e Create a workspace for Watson Knowledge Studio.
+e Configure the workspace resources.
+e Create document sets
+e Pre-annotate documents
+e Create tasks for human annotators
+e Analyze inter-annotator agreement and adjudicate conflicts in annotated documents
+
+e Create machine learning models.
+
+Introduction
+
+Use IBM Watson™ Knowledge Studio to create a machine learning model that understands the
+linguistic nuances, meaning, and relationships specific to a certain industry or domain. Knowledge
+Studio provides easy-to-use tools for annotating unstructured domain literature and uses those
+annotations to create a custom machine learning model that understands the language of the
+domain.
+
+Requirements
+
+IBM Cloud account.
+
+ 
+
+© Copyright IBM Corp. 2018 1
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Exercise instructions
+
+In this exercise you will complete the following tasks:
+1. Create a Knowledge Studio service.
+
+Create a workspace.
+
+Create a type system.
+
+Add a dictionary.
+
+2
+3
+4
+5. Add documents for annotation
+6. Create annotation sets
+
+7. Pre-annotate with a dictionary-based annotator
+8. Create an annotation task
+
+9. Annotate documents
+
+__ 10. Analyze inter-annotator agreement
+
+__ 11. Adjudicate conflicts in annotated documents
+
+__ 12. Create a machine learning model
+
+Part 1. Creating a Knowledge Studio service instance
+
+In this part, you will create a Knowledge Studio service instance on IBM Cloud.
+Perform the following steps:
+
+__ 1. Log in to IBM Cloud using your IBMid.
+
+__ 2. Click Catalog > Al. All the Al services are listed.
+
+__ 3. Click the Knowledge Studio tile.
+
+ 
+
+© Copyright IBM Corp. 2018 2
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Catalog
+
+\ labelslite
+
+All Categories (52) Al
+
+ 
+
+Watson Assistant (formerty
+Conversation)
+
+   
+
+ 
+
+ 
+
+ 
+
+ 
+
+Knowledge Catalog
+
+Lite
+
+ 
+
+Discover, catalog, and securely share enterprise data
+
+ 
+
+ 
+
+1%) Machine Learning
+Lite
+
+ 
+
+ 
+
+Al OpenScale
+
+n enterprise-srade
+infused applications that provides
+
+  
+
+ 
+
+ 
+
+=| _ Knowledge Studio
+ui
+
+ 
+
+Teach Watson the language of your domain
+
+ 
+
+ 
+
+Natural Language Understanding
+
+ 
+
+ct meta-data from content euch
+as concepts, entities, emation, sentiment
+and more.
+
+ 
+
+Discovery
+tite +180
+
+ 
+
+Add cognitive search
+to applications
+
+ 
+
+ontent analytics
+
+ 
+
+ery
+
+[°® Language Translator
+We tite «1am
+
+ments, and websites
+industry or
+
+   
+   
+
+229 Personality Insights
+A tite «16m
+
+ 
+
+paychological trite
+
+__4. Accept the default values and click Create to create a Lite plan instance of the Knowledge
+
+Studio service.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+© Viewall
+Knowledge Studio
+
+Lite - IBM
+
+ 
+
+ 
+
+Teach Watson the language of your
+domain with custom machine learning
+models that identify entities and
+relationships unique to your industry in
+unstructured text. Build your models ina
+collaborative environment designed for
+both developers and domain experts,
+without needing to write code. Use the
+models in Watson Discovery, Watson
+Natural Language Understanding and
+Watson Explorer.
+
+Service name:
+
+Knowledge Studio-9v
+
+Choose a region/location to
+deploy in:
+
+Dallas -
+
+Features
+
+« Teach by Example
+
+Default
+
+Select a resource group: @
+
++ Engage your Experts
+
+ 
+
+View Docs Terms
+Empower domain subject matter experts to You won't need a single line of code. With a
+teach Watson the language of your industry multi-user collaborative environment and a
+aCe aa or organization without requiring deep powerful user interface, SMEs can easily build
+PUBLISHED 11/29/2018 technical skills or coding. custom models without any coding expertise,
+. unlike competitive offerings.
+TYPE Service
+* WKS is End-to-end + Use Everywhere
+It’s the only offering in the market that Apply what you've taught Watson in multiple
+combines the powerful capabilities of applications by using models from Watson
+annotation, training, and evaluation in a Knowledge Studio in Watson Discovery, Watson
+single collaboration-focused service. Natural Language Understanding and Watson
+Explorer.
+Need Help? Estimate Monthly Cost
+
+Contact IBM Cloud Support [7
+
+Cost Calculator
+
+__5. After the instance is created, click Manage (left menu), and then click Launch Tool to
+open the Watson Knowledge Studio tooling.
+
+Dashboard /
+
+Manage
+Knowledge Studio-9v
+Getting started g
+Resource Group: Default Location: Dallas
+Plan
+Get started by launching the tool.
+
+ 
+
+Cred Getting started tutorial
+
+Plan: Lite Upgrade now and receive $200 in credit
+
+__6. The Workspaces page is displayed. (Dismiss or close any pop-ups).
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+IBM Watson Knowledge Studio ee © MOM Creel PLAN
+
+ 
+
+ 
+
+Wo rks p aces ® Create Workspace @ Self-migration from IBM Marketplace is now available
+
+ 
+
+ 
+
+ 
+
+Let's get started.
+
+Create a workspace to start building your model.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Learn more
+
+ 
+
+Part 2. Creating a workspace
+
+In this part, you will learn how to create a workspace in Watson Knowledge Studio. A workspace
+defines all the resources that are required to create a machine learning model, including training
+documents, the type system, dictionaries, and annotations that are added by human annotators.
+
+Perform the following steps:
+__1. Click + Create Workspace
+
+__ 2. Specify the details for the new workspace:
+a. Inthe Workspace name field, type My workspace.
+
+b. In the Language of documents field, use the default value, English. The sample
+files you will be using for this tutorial are in English.
+
+__ 3. Click Create.
+
+ 
+
+© Copyright IBM Corp. 2018 5
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Create Workspace
+
+ 
+
+Workspace name Language of documents
+
+My workspace English ¥
+
+ 
+
++ Add Workspace Description
+
+» Advanced Options
+
+ 
+
+ 
+
+__ 4. After the workspace is successfully created it opens automatically and the Entity Types
+page is displayed as shown in the figure.
+
+ 
+
+ 
+
+SIUM
+
+ 
+
+< Back to Workspaces
+
+Entity Types
+
+ 
+
+ments Entity Types 0 Mention Classes Mention Types
+
+Tara)
+
+Entity Types
+
+Entity Type Name Roles Subtypes Action
+
+ 
+
+ 
+
+Part 3. Creating a type system
+
+A type system defines things that are interesting in your domain content that you want to label with
+an annotation. The type system controls how content can be annotated by defining the types of
+entities that can be labeled and how relationships among different entities can be labeled.
+Typically subject matter experts for a domain help to define the type system.
+
+In this part, you will learn how to upload and modify a type system within Knowledge Studio. You
+must create or upload a type system before you begin any annotation tasks.
+
+Perform the following steps:
+
+__ 1. Download the en-klue2-types.json file to your computer. This file contains an example type
+system.
+
+ 
+
+© Copyright IBM Corp. 2018 6
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+__2. Click Assets > Entity Types.
+__3. On the Entity Types page, click Upload.
+
+ee EN
+
+ 
+
+< Back to Workspaces
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Entity Types
+Assets -
+Documents Entity Types | 0 Mention Classes Mention Types
+Entity Types
+Relation Types Add Entity Type U)e)fer-Xelg ¢ Upload an existing type system.
+Dictionaries ~ Upload type system
+
+ 
+
+Create a type system.
+
+ 
+
+ 
+
+Rule-based Model .
+oO Entity Type Name Roles Subtypes
+
+Machine Learning
+Model
+
+Settings
+
+Na itame
+
+Help First 1.
+
+__ 4. Upload the en-klue2-types.json file from your computer. Click Upload after specifying the
+json file to upload.
+
+Upload a Type System
+
+ 
+
+v
+
+Lee!
+
+Drag a file in JSON format, or click here to browse for the type system that
+you want to upload.
+
+en-klue2-types.json
+
+ 
+
+ 
+
+ 
+
+Close Upload
+
+__5. The uploaded type system is displayed in the table as shown in the figure.
+
+ 
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018 7
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+Entity Types
+
+Entity Types (52 Mention Classes Mention Types
+
+an NaN} pload Dow
+
+°
+
+(Entity Type Namo Roles ‘Subtypes P Action
+CO ORDINAL ORDINAL dit Delet
+
+ANIMAL
+MONEY MONEY OTHER é Ds
+
+AWARD UNSPECIFIED
+
+how all
+
+(1 EVENT_VIOLENCE EVENT_VIOLENCE f
+PEOPLE PEOPLE f
+
+1 TIT EWNeK TIT EWE aruce
+
+ 
+
+ 
+
+ 
+
+— Cookie Prefer
+
+ 
+
+__ 6. Browse the type system so you can see the data that was uploaded.
+__ 7. Edit an entity type:
+___a. Locate the MONEY entity type.
+
+Double-click anywhere in the table row to edit the entity type.
+
+b.
+__C. Inthe Roles column, click the delete icon next to the AWARD role.
+d.
+
+ 
+
+ 
+
+ 
+
+ 
+
+Click Save.
+Entity Type Name Roles Subtypes P Action
+ANIMAL
+Show all.
+MONEY Select a role ~ @ Add E btype @ aad Cancel
+MONEY (This type) OTHER fo
+AWARD 6 UNSPECIFIED qf
+Delete a role ORTH
+GAINLOSS 0
+
+After you finish making changes to the type system, you can begin adding documents to your
+workspace.
+
+Part 4. Adding a dictionary
+To help human annotators get started with their annotation tasks, you can create a dictionary and
+use it to pre-annotate documents that you add to the corpus.
+
+In this part, you will learn how to add a dictionary to a workspace in Knowledge Studio.
+Dictionaries are used for pre-annotating text when creating a machine learning model.
+
+ 
+
+© Copyright IBM Corp. 2018 8
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+Perform the following steps:
+
+__ 1. Download the file dictionary-items-organization.csv to your computer. This file contains
+dictionary terms in CSV format, suitable for uploading into a Knowledge Studio dictionary.
+
+__ 2. Click Assets > Dictionaries.
+
+___3. Click Create Dictionary to add a dictionary as shown in the figure.
+
+ 
+
+< Back to Workspaces too. ‘
+Dictionaries
+
+Assets .
+
+Upload a CSV file that contains
+
+Documents nee ° dictionary terms, or a ZIP file that
+Create Dictionary : gs apes ea
+e contains dictionaries downloaded
+
+Entity Types
+
+from another workspace.
+
+  
+
+Create an empty dictionary. You
+can add terms to it or upload a
+CSV file of dictionary entries.
+
+bo
+
+Relation Types
+
+ 
+
+Dictionaries
+
+Rule-based Model .
+
+Machine Learning
+Model
+
+Settings
+
+Help
+
+ 
+
+ 
+
+ 
+
+ 
+
+Note: Do not click Upload Dictionary, which is used to upload a dictionary that you want to use
+as-is. For this exercise, you will create a new editable dictionary and then upload terms into it.
+
+ 
+
+__ 4. Inthe Name field, type Test dictionary and click Save to create the (empty) dictionary.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+o
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+IBM Watson
+
+ 
+
+< Back to Workspaces
+
+Dictionaries
+Assets -
+Documents
+Entity Types
+Relation Types Name: Test dictionary
+
+ 
+
+ 
+
+Dictionaries Cancel
+
+Rule-based Model .
+
+ 
+
+ 
+
+__5. The new dictionary is created and automatically opened for editing.
+
+BEN erel)
+
+ 
+
+< Back to Workspaces oo. .
+Dictionaries
+Assets .
+
+Entity Types Language: English | 0 entry
+Relation Types Test dictionar o
+
+| "y Entity type: Rule class:
+Dictionaries None ies
+
+ 
+
+Rule-based Model ~
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Machine Learning . PCa Ot] Download
+Model
+Settings [Upload dictionary entries
+
+Oo Lemma ‘Surface Forms Part of Speech... Action
+
+Help
+
+___6. Inthe dictionary pane, click Upload.
+
+__7. Upload the file dictionary-items-organization.csv from your computer.
+
+ 
+
+© Copyright IBM Corp. 2018 10
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Upload Dictionary Entries
+
+ 
+
+v
+
+_
+
+Drag a file here, or click to browse for the file that you want to upload.
+
+You can upload any CSV file that contains dictionary terms.
+Maximum file size: 1MB
+
+dictionary-items-organization.csv
+
+The terms in the file are uploaded into the dictionary.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+__ 8. Click Add Entry to create a new term. An editable row is added at the top of the table.
+
+Dictionaries
+
+: Test dictionary Q. Enter text to filter <
+
+Language: English | 24 entries
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+icti 24):
+| Test dictionary 24): Entity : Rule class:
+None ~ None ~
+Upload Download
+Lemma + Surface Forms Part of Speec... Action
+Beverly Hills Beverly Hills Hotel Noun Edit Delete 4
+Hotel
+British British Academy, BAFTA/LA Noun Edit Delete
+Academy
+Golden Globes Golden Globes Noun Edit Delete
+Writers Guild Writers Guild, WGA Noun Edit Delete x
+© Copyright IBM Corp. 2018 11
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+___9. In the Surface Forms column, type IBM and International Business Machines Corporation
+on separate lines. When you begin to type a new surface form, a space is added below for an
+additional surface form. Leave the radio button next to IBM selected, which indicates that IBM
+is the lemma.
+
+ 
+
+Information: Lemma specifies the most representative word form for the entry and surface forms
+specify equivalent terms.
+
+ 
+
+__ 10. In the Part of Speech column, select Noun.
+
+ 
+
+ 
+
+__ 11. Click Save.
+Lemma Surface Forms Part of Speech Action
+IBM @ 18M Noun | [ Cancel Save
+) International Business Machines Corporation
+Enter text
+
+ 
+
+ 
+
+ 
+
+___ 13. Scroll through the entries to confirm that the new term has been added to the dictionary.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Dictionaries
+belo fel he nter text to filte
+Test dictionary Enter te °
+Language: English | 25 entries
+icti 25
+| Test dictionary Entity type: Rule class:
+None . None +
+
+pha cae Delete Entries Upload Download
+Lemma Surface Forms Part of Speec... Action
+
+LO Mozilla Mozilla, Mozilla Corp. Noun Edit Delete |
+Microsoft Microsoft, Microsoft Corp. Noun Edit Delete
+Apple Apple, Apple Inc. Noun Edit Delete
+
+oO Google Google, Google Inc. Noun Edit Delete
+
+IBM IBM, International Business Noun Edit Delete
+
+Machines Corporation
+
+ 
+
+After you create a dictionary, you can use it to speed up human annotation tasks by pre-
+
+annotating the documents.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Part 5. Adding documents for annotation
+
+To train a model, you must add documents that are representative of your domain content to your
+workspace. As a best practice, start with a relatively small collection of documents. Use these
+documents to train human annotators and to refine the annotation guidelines. As annotation
+accuracy improves, you can add more documents to the corpus to provide greater depth to the
+training effort.
+
+In this part, you will learn how to add documents to a workspace in Knowledge Studio that can be
+annotated by human annotators.
+
+Perform the following steps:
+
+__1. Download the file documents-new.csv to your computer. This file contains example
+documents suitable for uploading.
+
+Within your workspace, click Assets > Documents.
+
+On the Documents page, click Upload Document Sets.
+
+IBM Watson Kn
+
+ 
+
+< Back to Workspaces
+
+Documents
+Assets -
+Documents Document Sets (1) Annotation Sets (0) Documents (AIL, 0)
+Entity Types
+Relation Types
+Dictionaries
+
+ 
+
+ 
+
+__ 4. Upload the file documents-new.csv from your computer. Specify the file to upload and click
+Upload.
+
+ 
+
+© Copyright IBM Corp. 2018 13
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Add a Document Set
+
+ 
+
+v
+
+—_
+
+Drag files here, or click to browse for the files that you want to add.
+Supported file types: CSV, TXT, PDF, DOC, DOCX, HTML, ZIP
+
+For the best performance, limit the number of words in each document. Fewer than
+2,000 words is good, but closer to 1,000 words is better.
+Show details about file types and upload limits
+
+documents-new.csv
+
+ 
+
+ 
+
+ 
+
+ 
+
+Close Upload
+
+ 
+
+ 
+
+__5. The uploaded file is displayed in the table.
+
+ 
+
+< Back to Workspaces
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+   
+
+ 
+
+ 
+
+ 
+
+Documents
+
+Assets -
+
+Documents Document Sets (2) Annotation Sets (0) Documents (All, 14)
+
+Entity Types
+
+Relation Types Upload Document Sets Download Document Sets
+
+Dictionaries Divi
+
+sete and assign human : -
+Rule- Model ~ = Documents Last Modified Action
+Machine Learning =| All 14 -
+Model
+. documents-new.csv 14 10/11/2018 Rename Delete
+
+Settings
+Help
+
+__6. Click documents-new.csv to browse the documents that were uploaded.
+
+ 
+
+© Copyright IBM Corp. 2018 14
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+< Back to Workspaces
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Documents
+Assets -
+Documents Document Sets (2) Annotation Sets (0) Documents (documents-new.c...
+Entity Types
+Relation Types
+Dictionaries
+Rule- Model ~ Name Last Modified Action
+Machine Learning . Technology - brighthand.com 10/11/2018 Delete
+Model
+| Technology - gamasutra.com 10/11/2018 Delete
+Settings
+Technology - gmanews.tv 10/11/2018 Delete
+Help ey - g y11/
+Technology - informationweek.com 10/11/2018 Delete
+Technology - i09.com 10/11/2018 Delete
+Technology - ip-telephony.tmcnet.com 10/11/2018 Delete
+Technology - businessweek.com 10/11/2018 Delete
+Technology - businesswire.com 10/11/2018 Delete
+
+__ 7. Click on a document to display the text.
+
+You can now divide the corpus into multiple document sets and assign the document sets to
+human annotators.
+
+Part 6. Creating annotation sets
+
+An annotation set is a subset of documents from an uploaded document set that you assign to a
+human annotator. The human annotator annotates the documents in the annotation set. To later
+use inter-annotator scores to compare the annotations that are added by each human annotator,
+you must assign at least two human annotators to different annotation sets. You must also specify
+that some percentage of documents overlap between the sets.
+
+In this part, you will learn how to create annotation sets in Knowledge Studio
+
+ 
+
+Note: In a realistic scenario, many users with different roles can have access to one workspace to
+collaborate, the different roles are Admin, Project Manager, and Human Annotator. In this exercise
+you are using a Lite plan for Watson Knowledge Studio which allows only one user in the
+workspace (you) with the Administrator role. Normally, you would create as many annotation sets
+as needed, based on the number of human annotators who are working in the workspace. In this
+exercise, you will create two annotation sets and you will assign both annotation sets to the same
+user (you).
+
+ 
+
+Perform the following steps:
+
+__ 1. Within your workspace, click Assets > Documents.
+
+ 
+
+© Copyright IBM Corp. 2018 15
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+___2. Click the Document Sets tab.
+
+__ 3. Click Create Annotation Sets.
+
+te Rel a
+
+ 
+
+< Back to Workspaces
+
+ 
+
+Documents
+Assets -
+| eee Document Sets (2) Annotation Sets (0) Documents (documents-new.cs...
+Entity Types
+Relation Types Upload Document Sets Download Document Sets
+
+ 
+
+ 
+
+ 
+
+   
+
+Dictionaries
+
+ 
+
+ite annotation sets and assign human annotators
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Rule-based Model ~ Documents Last Modified Action
+Machine Learning . All 14 -
+Model
+. documents-new.csv 14 10/11/2018 Rename Delete
+Settings
+Help
+
+The Create Annotation Sets window opens. By default, this window shows the base set,
+which contains all documents, and fields where you can specify the information for a new
+annotation set.
+
+Create Annotation Sets
+
+ 
+
+Base set All .
+Overlap 100, % of 14 documents
+New Sets @ Add another set and human annotator
+
+To view inter-annotator agreement scores, assign at least two human annotators and
+ensure that a percentage of documents overlap between the sets.
+
+Annotator -- Select -- ~
+
+Set name
+
+ 
+
+Cancel
+
+ 
+
+ 
+
+ 
+
+__ 4. Click Add another set and human annotator to add fields for an additional annotation
+set. You can click to add as many annotation sets as you want to create. For this exercise, you
+need only two annotation sets.
+
+ 
+
+© Copyright IBM Corp. 2018 16
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Create Annotation Sets
+
+ 
+
+Base set All .
+Overlap froo % of 14 documents
+New Sets @ Add another set and human annotator
+
+To view inter-annotator agreement scores, assign at least two human annotators and
+ensure that a percentage of documents overlap between the sets.
+
+Annotator -- Select -- +
+Set name
+Annotator -- Select -- ~ FF
+
+Set name [...St~<‘CsSS
+
+ 
+
+Cancel
+
+ 
+
+ 
+
+ 
+
+__ 5. Inthe Overlap field, specify 100. This value specifies that you want 100 percent of the
+
+documents in the base set to be included in all the new annotation sets so they can be
+annotated by all human annotators.
+
+__ 6. For each new annotation set, specify the required information.
+
+e Inthe Annotator field, select a human annotator user ID to assign to the new
+annotation set. For this exercise, the administrator will act as human annotator.
+
+ 
+
+Note: |n a realistic scenario, each annotation set is assigned to a different human annotator, as
+you would have multiple human annotators.
+
+ 
+
+e Inthe Set name field, specify a descriptive name for the annotation set. For this
+exercise, you can use the names, Set 7 and Set 2.
+
+ 
+
+© Copyright IBM Corp. 2018 17
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Create Annotation Sets
+
+ 
+
+Base set All ¥
+Overlap 100  %of14 documents
+New Sets @) Add another set and human annotator
+
+To view inter-annotator agreement scores, assign at least two human annotators and
+ensure that a percentage of documents overlap between the sets.
+
+Annotator Trial Account ¥
+
+Set name Set 1
+
+Annotator Trial Account ~ fw
+Set name Set 2[
+
+ 
+
+ 
+
+ 
+
+ 
+
+__7. Click Generate
+The new annotation sets are created as shown in the figure.
+
+ 
+
+ 
+
+ 
+
+Documents
+Document Sets (2) Annotation Sets (2) Documents (All, 14)
+To begin annotating documents, create a task on the Annotation Tasks page.
+Name * Documents ¢ Annotator < Last Modified © Action
+Set 1 14 Trial Account 09/18/2018 Rename Delete
+Set 2 14 Trial Account 09/18/2018 Rename Delete
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
+18
+
+ 
+Exercises Guide
+
+ 
+
+Part 7. Pre-annotating with a dictionary-based annotator
+
+Pre-annotating documents bootstraps the annotation effort of the human annotators.
+
+In this part, you will learn how to use a dictionary-based annotator to pre-annotate documents in
+Knowledge Studio. Pre-annotating documents is an optional step. However, it is a worthwhile step
+because it makes the job of human annotators easier later.
+
+Perform the following steps:
+__ 1. Within your workspace, click Assets > Dictionaries.
+The dictionary Test Dictionary that was created in Part 4 Adding a dictionary opens.
+
+__ 2. From the Entity type list, select the ORGANIZATION entity type to map it to the dictionary
+Test dictionary. Inspect the entries to ensure that they all represent organizations. The
+ORGANIZATION entity type is part of the type system that was created in Part 3 Creating a
+type system.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Test Dictionary Q. Enter text to filte e
+
+Language: English | 25 entries
+
+Entity type: Rule class:
+
+ORGANIZATION oa None ¥
+
+Upload Download
+Lemma Surface Forms Part of Speech Action
+IBM IBM, International Business Machines Corporation Noun Edit Delete a
+Beverly Hills Hotel Beverly Hills Hotel Noun Edit Delete ;
+British Academy British Academy, BAFTA/LA Noun Edit Delete
+Golden Globes Golden Globes Noun Edit Delete
+Writers Guild Writers Guild, WGA Noun Edit Delete
+USA Today USA Today Noun Edit Delete 7
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+__ 3. Onthe Machine Learning Model > Pre-annotation > Dictionaries tab, click Apply This
+Pre-annotator.
+
+ 
+
+© Copyright IBM Corp. 2018 19
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+< Back to Workspaces
+
+Pre-annotation
+
+ 
+
+Assets -
+Documents Dictionaries Natural Language Understanding
+Entity Types
+Relation Types A dictionary annotator creates an annotation for each mention in the text
+oo that matches a term in a dictionary. Dictionaries must be mapped to a type
+Dictionaries or class in order to apply an annotation.
+Rule-based Model . eval ‘annotato'
+Machine Learning .
+Model
+| Pre-annotation Dictionary Mapping
+Annotation Tasks
+Manage dictionaries from the Dictionaries page.
+Performance
+Versions _ 7 -
+Dictionary Name Entity Type Actions
+Settings Test dictionary ORGANIZATION Edit
+Help
+
+__4. Select the annotation sets that you created named Set 7 and Set 2 and then click Run
+
+ 
+
+ 
+
+ 
+
+Run Annotator Close ca
+
+ 
+
+Documents
+
+Select the document sets or annotation sets that you want to pre-annotate.
+
+ 
+
+ 
+
+documents-new.csv
+
+ 
+
+ 
+
+ 
+
+Set1
+
+Set 2
+
+__5. A notification reporting the annotator completion results is displayed. The documents in the
+selected sets are pre-annotated by using the dictionary that you created.
+
+ 
+
+ 
+
+Success: Dictionary annotator application complete. X
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018 20
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Part 8. Creating an annotation task
+
+Before human annotators can begin adding annotations to documents, the annotation process
+manager must create an annotation task.
+
+The annotation task specifies which documents are to be annotated. To compare how well the
+human annotators perform, and to see how consistently they apply the annotation guidelines, you
+must include at least two human annotators in the task. In addition, some percentage of
+documents must occur in all of the annotation sets that you add to the task (you specify the
+overlap percentage when you create the annotation sets).
+
+In this part, you will learn how to use annotation tasks to track the work of human annotators in
+Knowledge Studio.
+
+Perform the following steps:
+__1. Within your workspace, click Machine Learning Model > Annotation Tasks.
+___2. On the Tasks page, click Add Task.
+
+IBM Watson Knowledge Studio
+
+ 
+
+< Back to Workspaces .
+Annotation Tasks
+
+Assets -
+
+Rule-based Model .
+Add Task Refresh
+
+Machine Learning . a
+Model
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Add a task and assign annotation
+sets to the task.
+
+ 
+
+ 
+
+Pre-annotation
+
+ 
+
+Annotation Tasks
+Performance
+
+Versions
+
+Settings
+
+Help
+
+__ 3. Specify the details for the task:
+
+e Inthe Task name field, enter Test.
+
+e Inthe Deadline field, select a date in the future.
+__ 4. Click Create.
+
+ 
+
+© Copyright IBM Corp. 2018 21
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+Task name
+
+Test]
+
+ 
+
+ 
+
+ 
+
+Deadline
+
+09/18/2018 ie]
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+__5. Select the annotation sets that you created previously Set 7 and Set 2.
+
+Selecting both annotation sets specifies that both sets must be annotated by their assigned
+
+human annotators to complete this task.
+
+Add Annotation Sets to the Task
+
+Annotation Set Name Annotator Name
+
+ 
+
+ 
+
+Cancel
+
+ 
+
+ 
+
+Create Task
+
+ 
+
+ 
+
+Task Name
+
+ 
+
+Set 1 Trial Account
+
+Set 2 Trial Account
+
+__ 6. Click Create Task.
+
+The Test annotation task is added.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
+22
+Exercises Guide
+
+ 
+
+ 
+
+Annotation Tasks
+
+Add Task Refresh
+
+Test :
+
+Deadline: 09/18/2018
+
+ 
+
+Progress 0%
+
+ 
+
+ 
+
+ 
+
+__ 8. Click Test. As human annotators begin annotating documents, you can open tasks to see
+their progress.
+
+ 
+
+Annotation Set Name Annotator Name Status Action
+Set 2 Trial Account _INPROGRESS _ Annotate |
+Set1 Trial Account _INPROGRESS_ Annotate |
+
+ 
+
+ 
+
+ 
+
+ 
+
+Part 9. Annotating documents
+
+When a human annotator annotates a document, the document is opened in the ground truth
+editor. The ground truth editor is a visual tool that human annotators use to apply labels to text.
+
+The goal of human annotation is to label mentions, relations, and coreferenced mentions so that
+the machine learning model can be trained to detect these patterns in unseen text.
+
+Information: Ground truth is the collection of vetted data that is used to adapt Watson to a
+particular domain. In Knowledge Studio, human annotators, who are typically experts in the
+subject matter of the target domain, play a major role in determining ground truth.
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018 23
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+In this part, you will learn how to use the ground truth editor to annotate documents in Knowledge
+Studio.
+
+Perform the following steps:
+1. Within your workspace, click Machine Learning Model > Annotation Tasks.
+
+2. Open the Test annotation task you just created in Part 8 Creating an annotation task.
+
+3. Click Annotate for one of the assigned annotation sets.
+
+ 
+
+€ Test
+
+Deadline: 09/18/2018
+
+Annotations added to annotation sets are not considered ground truth until the annotation sets are submitted and accepted.
+When an annotation set is accepted, documents that are annotated in only one annotation set immediately become ground truth.
+Documents that are annotated in two or more annotation sets become overlapping documents that will become ground truth after conflicts are]
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+resolved.
+Edit Annotation Sets Refresh Calculate Inter-Annotator Agreement
+Annotation Set Name Annotator Name Status Action
+
+ 
+
+Annotate
+
+ 
+
+Set 2 Trial Account
+
+Set 1 Trial Account _INPROGRESS _ | Annotate
+
+ 
+
+ 
+
+ 
+
+ 
+
+__ 4. From the list of documents, find the Technology - gmanews.tv document and open it.
+
+ 
+
+© Copyright IBM Corp. 2018 24
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+Select Document
+
+Annotation Set: Set 1
+Annotator: trialaccount26@yahor
+Task: Test
+
+Submit All Documents
+
+Document Name
+
+ 
+
+o.com
+
+ 
+
+Close
+
+ 
+
+ 
+
+-14 of 14
+
+ 
+
+Technology - brighthand.com
+Technology - gamasutra.com
+Technology - gmanews.tv
+
+Technology - informationweek.com
+Technology - io9.com
+
+Technology - ip-telephony.tmcnet.com
+Technology - businessweek.com
+Technology - businesswire.com
+Technology - computerworld.com
+
+Technology - computerworlds.com
+
+ 
+
+Showing 1
+
+Status > Last Modified Actions
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+Ready Sep 18, 2018 3:22:31 AM Open
+
+First 1 Last
+
+»
+
+WW
+
+ 
+
+ 
+
+Notice in the following figure that the term /BM was already annotated with the ORGANIZATION
+entity type. This annotation was added by the dictionary pre-annotator that was applied in Part 7
+Pre-annotating with a dictionary-based annotator. This pre-annotation is correct, so it does not
+
+need to be modified (colors may be different for you).
+
+< Back to Workspaces € Back to Task Open document list
+
+Assets - x
+Rule-based Model ~
+
+Machine Learning
+lodel
+
+ 
+
+Pre-annotation
+
+ze
+Annotation Tasks o—
+Coreference
+Performance
+Versions
+2
+
+Settings
+Help
+
+ 
+
+sas “a
+
+ 
+
+Technology - gmanews.tv
+
+ 
+
+NCR, which counts [IBM] founder Thomas Watson as one of
+
+ 
+
+ 
+
+ 
+
+its early employees, said its products and services
+account for more than $400 billion in annual commerce
+
+and 23 billion consumer serf-service transactions.
+
+The company's Philippine office established in the 1960s
+currently operates a research and development facility in
+Cebu with about 500 employees.
+
+Alphab..-  14pt so - 1 :
+
+a
+
+Entity Mention
+
+Type Subtype Role
+
+—
+
+x
+
+b
+
+ORDINAL
+
+ORGAN
+
+ORGANIZATION
+
+PEOPLE
+
+PERCENT
+
+PERSON
+
+PERSONPEOPLE
+
+PHONE
+
+ 
+
+© Copyright IBM Corp. 2018
+
+25
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+__5. Annotate a mention.
+a. Click the Entity tab.
+b. In the document body, select the text Thomas Watson.
+
+c. In the list of entity types, click PERSON. The entity type PERSON is applied to the
+selected mention.
+
+ 
+
+€ Back to Task [5] Open document list Alphab... ~ 14pt ~ 1
+EY aA Sf Ss Ready 1 Entity Mention
+a el A
+
+Type Subtype Role
+a Technology - gmanews.tv | ——<$<—
+Relation 1 / ORDINAL
+NCR, which counts IBM founder Thomas Watson as one of
+igo x ORGAN
+aa its early employees, said its products and services
+© ORGANIZATION
+fp account for more than $400 billion in annual commerce
+and 23 billion consumer serf-service transactions. fag PEOPLE
+2 we . . . b PERCENT
+The company's Philippine office established in the 1960s
+p PERSON
+
+currently operates a research and development facility in
+
+- Person FOPLE
+
+ 
+
+Cebu with about 500 employees.
+
+__6. Annotate a relation.
+a. Click the Relation tab.
+
+b. Select the Thomas Watson and IBM mentions (in that order). To select a mention, click
+the entity type label above the text.
+
+c. In the list of relation types, click founderOf. The two mentions are connected with a
+founderOf relationship.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+€ Back to Task Open document list Alphab..~  14pt +1.
+EY Ready IES Relation Type
+Mention IT employedsy
+Technology - gmanews.tv - | foundedon
+coma 1 - | founderOf
+o— founderOf .
+-o— r -\ ~ | hasAttribute [founderOf
+Coreference E ,
+OR... PERSON - | instrumentof
+NCR, which counts IBM founder Thomas Watson as one of its early ~ | locatedAt
+employees, said its products and services account for more than $400 ~ | managerof
+billion in annual commerce and 23 billion consumer serf-service 4
+- | memberOf
+transactions.
+- | near
+
+ 
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018
+
+26
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+__ 7. From the status menu, select Completed, and then click Save.
+
+€ Back to Task Open document list
+Ey aot SE
+Menti Ready
+ion
+In Progress
+
+ 
+
+74 Technology - gmanews.tv
+
+Relation 1
+
+__ 8. Repeat the previous steps to create more annotations from the documents in the set to
+practice the annotation process.
+
+__ 9. Click Open document list to return to the list of documents for this task and click Submit
+All Documents to submit the documents for approval.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Select Document Close
+
+(Annotation Set: Set 1
+
+Annotator: trialaccount26@yahoo.com
+
+[Task: Test
+Submit All Documents Showing 1-14 of 14
+Document Nam... Status * Last Modified Actions
+Technology - bri... Ready Sep 18, 2018 3:22:31 AM Open =
+Technology - ga... Ready Sep 18, 2018 3:22:31 AM Open
+Technology - inf... Ready Sep 18, 2018 3:22:31 AM Open
+Technology - io9... Ready Sep 18, 2018 3:22:31 AM Open 1
+Tachnolon in. Dana &
+
+ 
+
+ 
+
+__ 10. At the confirmation prompt click OK.
+___ 11. Close this annotation set, and then open the other annotation set in the Test task.
+
+___ 12. Repeat the same annotations done in the previous example in the Technology -
+gmanews.tv document, except this time, use the employedBy relation instead of the
+founderOf relation, when creating the relation annotation.
+
+ 
+
+© Copyright IBM Corp. 2018 27
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+€ Back to Task By Open document list Alphab..~  14pt. so - ) 1.
+Ay Ready EES Relation Type
+Menti in
+
+os aT wean
+Technology - gmanews.tv .
+-  dissolvedOn
+
+Coreg) 1
+
+i -  educatedAt
+
+em|
+oo ployedBy
+o— rr | - | employedBy
+coreference:
+GR BERSON - | foundedon [employedBy
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+NCR, which counts IBM founder Thomas Watson as one of its early
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+- | founderOf
+employees, said its products and services account for more than $400
+oo a . - | hasAttribute
+billion in annual commerce and 23 billion consumer serf-service
+- | instrumentOf
+
+transactions.
+
+ 
+
+___ 13. After you complete the annotations for the second annotation set, click Submit All
+
+ 
+
+ 
+
+Documents.
+Document Nam... Last Modified ~ Actions
+Technology - bri... Sep 18, 2018 3:22:31 AM e Fea
+
+Technology - ga... Sep 18, 2018 3:22:31 AM
+
+Technology - inf... Sep 18, 2018 3:22:31 AM
+Technology - io9... Sep 18, 2018 3:22:31 AM
+Technology - ip-... Sep 18, 2018 3:22:31 AM
+Technology - bu... Sep 18, 2018 3:22:31 AM
+Technology - bu... Sep 18, 2018 3:22:31 AM
+
+Technology - co... Sep 18, 2018 3:22:31 AM
+
+Technology - co... Sep 18, 2018 3:22:31 AM
+
+wn
+oo
+a
+6
+G
+“>
+
+First 1 Last
+
+ 
+
+ 
+
+ 
+
+ 
+
+Both annotation sets should now be in status SUBMITTED.
+
+ 
+
+© Copyright IBM Corp. 2018 28
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Test
+
+Deadline: 10/11/2018
+
+Annotations added to annotation sets are not considered ground truth until the annotation sets are submitted and accepted.
+
+When an annotation set is accepted, documents that are annotated in only one annotation set immediately become ground truth.
+Documents that are annotated in two or more annotation sets become overlapping documents that will become ground truth after conflicts a
+resolved.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Edit Annotation Sets Refresh Calculate Inter-Annotator Agreement
+Annotation Set Name Annotator Name Status Action
+L] Seta Trial Account SUBMITTED View
+[J Set2 Trial Account _ SUBMITTED View
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Part 10. Analyzing inter-annotator agreement
+
+To determine whether different human annotators are annotating overlapping documents
+consistently, review the inter-annotator agreement (IAA) scores.
+
+Knowledge Studio calculates IAA scores by examining all overlapping documents in all document
+sets in the task, regardless of the status of the document sets. The IAA scores show how different
+human annotators annotated mentions, relations, and coreference chains. It is a good idea to
+check IAA scores periodically and verify that human annotators are consistent with each other.
+
+At the end of Part 9 Annotating documents, the human annotators submitted all the document sets
+for approval. If the inter-annotator agreement scores are acceptable, you can approve the
+document sets. If you reject a document set, it is returned to the human annotator for improvement.
+
+In this part, you will learn how to compare the work of multiple human annotators in Knowledge
+Studio.
+
+Perform the following steps:
+
+__ 1. Within your workspace, click Machine Learning Model > Annotation Tasks, and click the
+Test task.
+
+In the Status column, you can see that the document sets are submitted.
+
+___2. Click Calculate Inter-Annotator Agreement.
+
+ 
+
+© Copyright IBM Corp. 2018 29
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Edit Annotation Sets | Refresh I Calculate Inter-Annotator Agreement
+JL
+Annotation Set Name Annotator Name
+Set 2
+
+Trial Account
+
+ 
+
+ 
+
+Set1
+
+ 
+
+ 
+
+Trial Account
+
+ 
+
+Status
+
+Action
+
+ 
+
+| View
+
+ 
+
+ 
+
+| View
+
+ 
+
+ 
+
+___3. View IAA scores for mention, relations, and coreference chains by clicking the first menu.
+You can also view agreement by pairs of human annotators. You can also view agreement by
+specific documents. In general, aim for a score of 0.8 out of 1, where 1 means perfect
+agreement. Because you annotated only two entity types in this exercise, most of the entity
+type scores are N/A (not applicable), which means no information is available to give a score.
+
+ 
+
+- Back to Test Task Review IAA for Test
+
+Mention ¥ Pair
+
+ 
+
+Values in the "All" column are Fleiss kappa scores. The range is below 1, and values can be negative.
+Values in the other columns are F1 scores. The range can be from 0 to 1.
+
+The closer a value is to 1, the higher the agreement rate is (1 means perfect agreement).
+
+ 
+
+ 
+
+ 
+
+Summary All trialaccount26@yahoo.com & trialaccount26@yahoo.com
+Overall Statistics a 1
+
+Entity Type All trialaccount26@yahoo.com & trialaccount26@yahoo.com
+AGE N/A N/A
+
+ANIMAL N/A N/A
+
+AWARD N/A N/A
+
+ 
+
+ 
+
+__4. Ensure that Mention is selected and scroll through the list and check the score for the
+ORGANIZATION and PERSON entities. You will find that they have a score of 1 to show
+
+complete agreement.
+
+__5. Select Relation and locate the employedBy and founderOf relations. You will find a score of
+
+0 to show complete disagreement.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
+30
+Exercises Guide
+
+ 
+
+__6. After you review the scores, you can decide whether you want to approve or reject
+document sets that are in the SUBMITTED status. Take one of these actions:
+
+e If the scores are acceptable for an annotation set, select the check box and click
+Accept. Documents that do not overlap with other document sets are promoted to
+ground truth. Documents that do overlap must first be reviewed through adjudication
+(discussed in Part 11) so that conflicts can be resolved.
+
+e If the scores are not acceptable for an annotation set, select the check box and click
+Reject. The document set needs to be revisited by the human annotator to improve the
+annotations.
+
+For this exercise, click Back to Test Task, make sure both annotation sets are selected,
+and then click Accept to accept both document sets.
+
+€ Test
+
+Deadline: 10/11/2018
+
+Annotations added to annotation sets are not considered ground truth until the annotation sets are submitted and accepted.
+When an annotation set is accepted, documents that are annotated in only one annotation set immediately become ground truth.
+Documents that are annotated in two or more annotation sets become overlapping documents that will become ground truth after conflicts a!
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+resolved.
+Edit Annotation Sets Refresh Calculate Inter-Annotator Agreement
+Annotation Set Name Annotator Name Status Action
+set1 Trial Account SUBMITTED View
+Set2 Trial Account _ SUBMITTED View
+
+ 
+
+ 
+
+ 
+
+At the Confirmation prompt, click OK.
+
+When you evaluate the inter-annotator agreement scores, you can see how different pairs of
+human annotators annotated the same document. If the inter-annotator agreement score is
+acceptable, you accept the document set, otherwise, you reject it to be revisited by the human
+annotator for improvements.
+
+Part 11. Adjudicating conflicts in annotated documents
+
+When you approve a document set, only the documents that do not overlap with other document
+sets are promoted to ground truth. If a document is part of the overlap between multiple document
+sets, you must adjudicate any annotation conflicts before the document can be promoted to
+ground truth.
+
+In this part, you will learn how to adjudicate conflicts in documents that overlap between document
+sets in Knowledge Studio.
+
+Perform the following steps:
+
+ 
+
+© Copyright IBM Corp. 2018 31
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+__1. Within your workspace, click Machine Learning Model > Annotation Tasks, and click the
+
+Test task.
+
+ 
+
+ 
+
+ 
+
+Edit Annotation Sets |
+
+ 
+
+Refresh
+
+ 
+
+Calculate Inter-Annotator Agreement
+
+Check Overlapping Documents for Conflicts
+
+ 
+
+ 
+
+ 
+
+ 
+
+Annotation Set Name
+
+Set 2
+
+Set1
+
+ 
+
+Annotator Name
+
+Trial Account
+
+Trial Account
+
+Status Action
+
+ 
+
+View
+
+ 
+
+ 
+
+ 
+
+View
+
+ 
+
+ 
+
+ 
+
+2. Click Check Overlapping Documents for Conflicts.
+
+You can see the overlapping documents that were annotated by more than one human
+annotator. In this exercise, all documents overlap therefore the overlap percentage is 100%.
+
+gmanews.tv document, find that document in the list and click Check for Conflicts.
+
+ 
+
+Document Name
+
+Technology - io9.com
+
+Technology - e.nikkei.com
+Technology - focustaiwan.tw
+Technology - foxnews.com
+Technology - brighthand.com
+Technology - businessweek.com
+Technology - businesswire.com
+
+Technology - gamasutra.com
+
+Technology - gmanews.tv
+
+ 
+
+Technology - ip-telephony.tmcnet.com
+
+Technology - content.usatoday.com
+
+Technology - computerworld.com
+
+Technology - informationweek.com
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Annotation Set Name Action
+
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 “Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 Check for Conflicts | Accept
+Set 2, Set 1 [ Check for Conflicts | Accept
+Set 2, Set 1
+
+ 
+
+Check for Conflicts | Accept
+
+ 
+
+ 
+
+ 
+
+__4. Select the two conflicting annotation sets and click Check for Conflicts.
+
+3. Because the exercise instructed you to create a conflicting relation for the Technology -
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
+32
+
+ 
+Exercises Guide
+
+ 
+
+Select the two sets of human annotation
+conflicts that you want to resolve.
+
+ 
+
+Set 2 (trialaccount26@yahoo.com)
+Set 1 (trialaccount26@yahoo.com)
+[-] Current Ground Truth
+
+ 
+
+Check for Conflicts
+
+ 
+
+ 
+
+ 
+
+ 
+
+Adjudication mode opens. In adjudication mode, you can view overlapping documents, check
+for conflicts, and remove or replace annotations before you promote the documents to ground
+truth.
+
+__5. Select Relation conflicts, to accept the founderOf relation, and reject the employedBy
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+  
+
+ 
+
+ 
+
+ 
+
+relation.
+< Backto Workspaces _—_SacktoList of Overiapoing Documenta
+Assets .
+Technology - gmanews.tv z
+Machine Learning Conflicts 2 remaining Student...
+Mo
+Human Annotators employedBy|
+Prevennoistion Student Testing Student...
+| ‘Annotation Tasks ounderoll
+Performance —
+v v
+Versions F.unresotved F Resotved oR... PERSON
+. NCR, which counts IBM founder Thomas Watson as one of its early employees, said
+Settings Mention conflicts 0
+its products and services account for more than $400 billion in annual commerce and
+Help Relation conflicts 2
+
+23 billion consumer serf-service transactions.
+
+Coreference chain conflicts (0
+Select all annotations
+
+___a. Select the founderOf relation and click Accept.
+
+__b. Select the employedBy relation and click Reject.
+
+ 
+
+© Copyright IBM Corp. 2018 33
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Back to List of Overlapping Documents romote to Ground Truth
+Technology - gmanews.tv 1
+Conflicts O remaining
+Human Annotators founderOf
+Student Testing ‘gs .
+OR... PERSON
+NCR, which counts IBM founder Thomas Watson as one of its early
+MUnresolved W! Resolved employees, said its products and services account for more than $
+. . 400 billion in annual commerce and 23 billion consumer serf-service
+Mention conflicts 0
+transactions.
+Relation conflicts 0
+Select all annotations (©)
+Coreference chain conflicts 0
+
+ 
+
+ 
+
+__ 6. Click Promote to Ground Truth.
+
+__7. Click Check for Conflicts and Promote to Ground Truth for all remaining documents in
+the list.
+
+8. Click Back to Test Task.
+
+After you resolve all annotation conflicts and promote the documents to ground truth, the
+status of the annotation sets is COMPLETED. And now you can use the documents to train
+the machine learning model.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Annotation Set Name Annotator Name Status Action
+Set 2 Trial Account COMPLETED View
+set1 Trial Account _ COMPLETED View
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Part 12. Creating a machine learning model
+
+When you create a machine learning model, you select the document sets that you want to use to
+train it. You also specify the percentage of documents that are to be used as training data, test
+data, and blind data. Only documents that became ground truth through approval or adjudication
+can be used to train the machine learning model.
+
+In this part, you will learn how to create a machine learning model in Knowledge Studio.
+Perform the following steps:
+
+__1. Click Machine Learning Model > Performance > Train and evaluate.
+
+ 
+
+© Copyright IBM Corp. 2018 34
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+< Back to Workspaces
+
+Performance
+Assets ,
+Rule-based Model .
+Machine Learning . My workspace Number of documents per set —| Training Set Test Set Last trained on:
+Pre-annotation Language of documents 0 Training Set Last evaluated on:
+English © Test Set
+Annotation Tasks 0 Blind Set
+
+| Performance
+
+Versions
+
+ings You have not trained the machine learning model. Clickhere to train and evaluate it.
+setti
+
+Help
+
+__ 2. Select All, and then click Train & Evaluate.
+
+< BacktoWorkspaces = ¢ == Training / Test / Blind Sets
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Assets -
+Rule-based Model ~ Select Training/ Test/ Blind Sets
+Machine Learning
+Model - Train
+Pre-annotation Document Set Task Status Create new sets by splitting the selected document s...
+Annotation Tasks
+All Ratio
+Performance Enter the percentage of documents to include in
+oO documents-new.csv each set.
+Versions
+7 Training Set (70% Recommended)
+Ose commu ,
+Settings 23 Test Set (23% Recommended)
+ow | cores
+Help 7 Blind Set (7% Recommended)
+
+__ 3. Training might take more than ten minutes, or even hours, depending on the number of
+human annotations and the number of words in all the documents. The Train processing status
+is displayed.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Performance Train processing... Time elapsed: 1 minutes
+My workspace Number of documents per set Training Set Last trained on:
+View Ground Truth
+Language of documents ins
+: 9 Training Set Test Set Last evaluated on:
+
+English 3 Test Set vy
+
+2 Blind Set View Ground Truth
+
+Train and evaluate You have not trained the machine learning model. Click here to train and evaluate it.
+© Copyright IBM Corp. 2018 35
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+__4. At the end of this step, you receive a notification indicating that the machine learning model
+evaluation is completed. Scroll-down to review the Performance page.
+
+Performance
+My workspace Number of documents per set
+Language of documents 9 Training Set
+English 3 Test Set
+
+2 Blind Set
+
+ 
+
+Train and evaluate | Low performance? Click here to train.
+
+ 
+
+ 
+
+ 
+
+Document set evaluation @
+
+Model over time
+
+a
+
+0.80
+
+0.60
+
+Score
+
+ 
+
+Training Set
+View Ground Truth
+
+  
+
+ 
+
+Last trained on:
+Oct 11, 2018 11:21:55 AN
+
+Test Set
+View Ground Truth
+
+Last evaluated on:
+Oct 11, 2018 11:24:27 AN
+
+View Decoding Results
+
+ 
+
+ 
+
+View Log Mention
+0.83 Precision: 0.83
+. Recall: 0.83
+Relation
+_- Precision: --
+Recall: --
+Coreference
+
+ 
+
+5. Click the Detailed Statistics links above each of the graphs to see detailed information
+about the machine learning model performance. On these Statistics pages, you can view the
+scores for mentions, relations, and coreference chains by using the radio buttons.
+
+Current version insights
+
+Mention breakdown @ Detailed Statistics
+
+Bottom 10 «a
+
+ORGANIZATION
+AGE
+ANIMAL
+AWARD.
+CARDINAL
+DATE
+DEGREE
+DISEASE
+DURATION
+EMAIL
+
+o 0.25 05 0.75
+
+Score
+
+% of labels
+
+Confused with
+
+(_»
+\/ Ways to Improve
+
+Entities get confused with other
+entities when there are mixed
+examples. Ensure examples are
+consistent.
+
++ Label more examples of low performing
+types.
+
++ Add more documents with new
+examples.
+
+e To view the Training / Test / Blind Sets page, click the Train and evaluate button.
+
+e To see the documents that human annotators worked on, click View Ground Truth.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+36
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+e To see the annotations that the trained machine learning model created on that same set
+of documents, click View Decoding Results.
+
+e To view details about the precision, recall, and F1 scores for the machine learning model,
+click the Performance page.
+
+e You can analyze performance by viewing a summary of statistics for entity types, relation
+types, and coreference chains.
+
+9. When you are satisfied with the performance of the model, you can export the current
+version of the machine learning model to use it in other Watson services such as Watson
+Discovery, and Watson Natural Language Understanding, or Watson software such as
+Watson Explorer.
+
+This feature enables your applications to use the deployed machine learning model to
+enrich the insights that you get from your data to include the recognition of concepts and
+relations that are relevant to your domain and analyze semantic features of text input,
+including entities and relations.
+
+To export a version of the machine learning model:
+
+___a. Click Machine Learning > Versions > Take Snapshot.
+
+<Back to Workspaces Versi
+ersions
+
+Assets
+Documents Machine Learning Model
+Entity Types
+
+Relation Types
+
+  
+
+\ce trained, can be used to annotate new
+‘annotation.
+
+   
+
+Dictionaries
+
+ 
+
+ 
+
+ 
+
+Rule-based Model . Run this modet
+
+ 
+
+Machine Learning
+Model
+
+Pre-annotation Version History and Deployment
+
+Annotation Tasks F1 score (Precision / Recall)
+
+ 
+
+Version Base  CreationDate —_ Entity Types Relation Types Description Action Status
+Performance
+10 0.83 (0.83 /
+| Versions Current Version e3) N/A BCs N/A
+
+ 
+
+Note: The Export current model option is not available for Lite plans.
+
+ 
+
+__b. Enter a description (optional) and click OK.
+
+ 
+
+© Copyright IBM Corp. 2018 37
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+Take a snapshot
+
+Create a snapshot of the current annotator component artifacts.
+This action creates a new version of the model, and keeps a copy
+of the artifacts that were used to build it.
+
+Description (Optional):
+
+ 
+
+___C. Choose the version of the model that you want to deploy.
+__d. Click Deploy.
+
+___@. Select the Watson service instance to deploy to.
+
+Deploy Model v1.0
+
+ 
+
+Select a service to deploy to.
+All services require a subscription. Learn more
+
+© Natural Language Understanding
+
+@ Discovery
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+__f. For this exercise, just click Cancel. You will deploy a Watson Studio machine learning
+model to Discovery in a future exercise.
+
+In this part, you created a machine learning model, trained it, and evaluated how well it performed
+when annotating test data and blind data. By exploring the performance metrics, you can identify
+ways to improve the accuracy of the machine learning model.
+
+ 
+
+© Copyright IBM Corp. 2018 38
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Optional exercise: Creating a rule-based
+model
+
+Estimated time:
+
+00:30
+
+Overview
+
+This exercise helps you understand how to create a rule-based model that you can use to find text
+patterns that you define in documents.
+
+Objectives
+
+After completing this exercise, you should be able to:
+e Create classes
+e Add documents for defining rules
+e Associate dictionaries with classes
+e Define regular expressions to capture sequences of characters
+
+e Define rules
+
+Introduction
+
+You will build a model that can find text in documents that matches the pattern month day, year.
+For example, the model would find the date reference May 1, 2010. Before you define the rule
+pattern itself, you will create artifacts that will help you build the pattern, including a dictionary
+class that recognizes month mentions and a regular expression class that recognizes year
+mentions in text.
+
+ 
+
+© Copyright IBM Corp. 2018 39
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Exercise instructions
+
+In this exercise you will complete the following tasks:
+1. Add a dictionary of months
+
+Add sample documents
+
+Create classes.
+
+Associate a dictionary with a class.
+
+2
+3
+4
+5. Find class annotations in documents.
+6. Define a regular expression.
+
+7. Define a rule.
+
+8
+
+Create a rule-based model.
+
+Part 1. Adding a dictionary of months
+
+In this part you will add a dictionary to your workspace in Knowledge Studio. The dictionary
+contains terms related to the months of the year. This task is similar to the task that you
+performed in Part 4 Adding a dictionary but this is a different dictionary related to the months of the
+year. Continue using the same workspace in Knowledge Studio.
+
+Perform the following steps:
+
+1. Download the file dictionary-items-month.csv_to your computer. This file contains
+dictionary terms in CSV format, suitable for uploading into a Knowledge Studio dictionary.
+
+__ 2. Click Assets > Dictionaries.
+__ 3. Click Create Dictionary to add a dictionary.
+
+__ 4. Inthe Name field, type Month dictionary and click Save to create the dictionary. The new
+dictionary is created and automatically opened for editing.
+
+__ 5. Inthe dictionary pane, click Upload.
+__ 6. Select the file dictionary-items-month.csv from your computer and click Upload.
+
+The terms from the file are imported into the dictionary as shown in the figure.
+
+ 
+
+© Copyright IBM Corp. 2018 40
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+Dictionaries
+
+: Month Dictionary
+Language: English 112 entries
+
+Test Dictionary 25
+Entity type:
+None
+
+Month Dictionary 12
+oO Lemma
+(December
+CI — November
+CO October
+September
+CO August
+oO duy
+
+ 
+
+Surface Forms
+December, Dec, Dec.
+
+November, Nov, Nov,
+
+October, Oct, Oct
+
+September, Sep, Sep., Sept, Sept
+
+Augus
+
+ 
+
+July, Jul, Jul.
+
+Rule class:
+
+None
+
+Part of Speech
+Noun
+Noun
+Noun
+Noun
+Noun
+
+Noun
+
+Action
+
+ 
+
+Part 2. Adding sample documents
+
+In this part, you will learn how to add documents with linguistic patterns that illustrate the types of
+rules you want to define. In this exercise, the documents should include dates in the format that
+
+you want to capture.
+
+Perform the following steps:
+
+__ 1. Download the documents-new.csv file to your computer. This file contains example
+documents suitable for uploading. These are the same document that were used before.
+
+__ 2. Click Rule-based Model > Rules.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+41
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
+ 
+Exercises Guide
+
+ 
+
+IBM Watson K
+
+ 
+
+< Back to Workspaces
+
+ 
+
+ 
+
+ 
+
+ 
+
+Rules Documents | @ A
+x
+Assets ~ Enter text to filte ° Add a document. You can create a plain text
+vi — document, upload a CSV file, or copy a document
+Documents ed from a set that you uploaded for annotation.
+Entity Types
+Relation 7 a: First, add a document with linguistic patterns that you
+eration Types Dictionaries want to capture as rules.
+Dictionaries No rules are defined. First, select
+faj+ the document text that depicts the
+Rule-based Model . Re tule pattern, and then click the
+plus sign to add the rule.
+Rules
+Versions
+
+Machine Learning
+Model
+
+Settings
+
+Help
+
+___3. Click the Add a document icon, which is next to the Documents page heading.
+
+__4. Click the Upload CSV file tab.
+
+ 
+
+ 
+
+ 
+
+< Back to Workspaces Rules Documents C@ Refresh
+Assets - o Z 9 New Upload CSV file Copy from Alll set
+
+Documents one
+
+Entity Types CB
+
+Relation Types Deen
+
+Dictionaries No rules are defined. First, select
+
+faj+ _ the document text that depicts the RP
+rule pattern, and then click the ot
+Rule-based Model - Regex ett
+plus sign to add the rule.
+—— Drag a file, or click here to browse for the file that you
+want to upload.
+
+Versions
+Machine Learning .
+Model
+Settings
+Help Cancel
+
+ 
+
+ 
+
+ 
+
+__5. Click to browse for the documents-new.csv file that you downloaded to your computer
+earlier, and then click Upload.
+
+ 
+
+© Copyright IBM Corp. 2018 42
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Documents
+
+C Refresh
+
+ 
+
+New Upload CSV file
+
+Copy from All set
+
+ 
+
+v
+
+_
+
+Drag a file, or click here to browse for the file that you
+want to upload.
+
+documents-new.csv
+
+ 
+
+ 
+
+Upload Cancel
+
+ 
+
+ 
+
+ 
+
+__6. Aset of documents will be displayed in the main Documents page as shown in the figure.
+
+ 
+
+ictionaries
+
+fale
+
+Regex
+
+ 
+
+ 
+
+No rules are defined. First, select
+the document text that depicts the
+rule pattern, and then click the
+plus sign to add the rule.
+
+Documents © C Refresh
+
+Technology - brighthand.com 6
+Thanks to an apparent slip-up, Microsoft has given the world a
+look at its upcoming online synchroni...
+
+Technology - businessweek.com a
+
+Vekiarides was previously general manager of HP's storage
+virtualization business, and most recently...
+
+Technology - businesswire.com 6
+
+PaperThin, Inc., provider of the leading Web content management
+solution CommonSpot, today unveiled ...
+
+Technology - computerworld.com a
+
+February 3, 2009 (Computerworld) The U.S. government has hired
+IBM to build a supercomputer with mor...
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018
+
+43
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
+ 
+Exercises Guide
+
+Part 3. Creating classes
+
+When you construct a rule, you use classes to represent types of information. As you build rules,
+you can define intermediate classes that are used only to build other more complex classes.
+
+In this part, you will learn how to define classes that you will use later when you define a rule.
+Perform the following steps:
+
+__1. From the Rules page of your workspace, click the Add a class icon next to the Class
+heading in the right panel as shown in the figure.
+
+Class ©
+Enter text [Add a dass °
+
+Check the class to display occurrences
+of it in the document.
+
+Uncheck All
+
+No classes are defined. Click the
+plus sign to add a class.
+
+__ 2. Enter DictMonth as the class name, and then click Add.
+
+Class
+Enter text to filter eo
+
+Check the class to display occurrences
+of it in the document.
+
+Uncheck All
+
+| DictMonth|
+
+Patel] Cancel
+
+ 
+
+ 
+
+ 
+
+ 
+
+__ 3. The new class is displayed in the Class panel.
+
+ 
+
+© Copyright IBM Corp. 2018 44
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+Class ©
+
+Enter text to filte °
+
+Check the class to display occurrences
+of it in the document.
+
+Uncheck All
+
+wr BRK
+
+Part 4. Associating a dictionary with a class
+
+In this part, you will learn how to use a dictionary in the rule editor.
+Perform the following steps:
+
+__ 1. Click Rule-based Model > Rules, and then click the Dictionaries tab.
+
+< Back to Workspaces
+
+Dictionaries
+Assets - 2 Enter text to filte eo
+Documents Rules Test dictionary
+Entity Types
+Relation Types Month dictionary
+Dictionaries
+
+ 
+
+Rule-based Model “
+Rules
+Versions
+
+___2. Select Month dictionary that you created previously.
+
+__ 3. From the Class list, select the DictMonth class and then click Save.
+
+© Copyright IBM Corp. 2018
+
+45
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+< Back to Workspaces = Dictionaries
+Assets « 2 Enter text to filter °
+Documents Test dictionary
+Entity Types
+Relation Types Dictionary name:
+Month dictionary
+Dictionaries
+Class:
+Rule-based Model “ _DictMonth .
+| Rules Cancel
+Versions
+
+The class is now associated with the dictionary.
+
+ 
+
+= Dictionaries
+
+? Enter text to filter 8
+
+Test Dictionary
+
+Month Dictionary
+
+Dictionaries
+
+ 
+
+fa]+
+
+Regex
+
+ 
+
+ 
+
+For documents that are associated with the rule editor, any references to terms in the dictionary
+are annotated as DictMonth class mentions.
+
+Part 5. Finding class annotations in documents
+
+In this part, you will learn how to find class annotations in rule editor documents.
+Perform the following steps:
+__ 1. Select Rule-based Model > Rules.
+
+From the Class panel, find the DictMonth class that you defined earlier, and click the Search
+annotations in documents Icon ©) beside the class name.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018 46
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Class ©
+Enter text to filter 8
+
+Check the class to display occurrence
+of it in the document.
+
+Uncheck All
+
+Bi KER.
+
+ 
+
+ 
+
+ 
+
+___2. The Find Annotations page is displayed and shows all the documents that contain text
+references to months.
+
+ 
+
+Find Annotations
+Select a class from the Class panel or enter the class name
+
+(DIEIMERH fy] Enter class nam @Q
+Results: - DictMonth 4 annotations
+
+Text Document
+
+ 
+
+a February 3, 2009 (Computerworld) The U.S. ... Technology -
+computerworld.com
+
+... Alamos National Laboratory, which passed the petaflop barrier last May, Technology -
+and Cray Inc.'s XT Jaguar at the ... computerworld.com
+
+we January 29, 2009 (Computerworld) Want to know ... Technology -
+computerworlds.com
+
+..- Tokyo, April 19 (CNA) National Taiwan University Professor Chen ... Technology -
+focustaiwan.tw
+
+ 
+
+ 
+
+ 
+
+___3. Click the Technology - computerworld.com document to view the full document. Notice
+that the text February is highlighted, which means it was annotated as a mention of the
+DictMonth class. If you scroll you will notice that May is highlighted also.
+
+ 
+
+© Copyright IBM Corp. 2018 47
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Technology - computerworld.com
+
+February 3, 2009 (Computerworld) The U.S. government has hired
+IBM to build a supercomputer with more power than all the
+
+supercomputers on the Top500 supercomputer list combined.
+
+Part 6. Define a regular expression
+
+At this point, you can capture month mentions by using the dictionary that you uploaded earlier
+and associated a class with it.
+
+In this part you will define a regular expression to capture year patterns like 2009.
+Perform the following steps:
+
+__1. From the Rules page, click the Add a class icon ® next to Class from the right panel.
+
+___2. Enter RegExpYear as the class name and click Add.
+Class
+Enter text to filter eo
+
+Check the class to display occurrences
+of it in the document.
+
+Uncheck All
+
+| RegExpYear
+
+rte] Cancel
+Pe
+
+___3. Click the Regex tab, and then click the Create a regular expression icon next to the
+Regular Expressions heading.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018 48
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+= Regular Expressions | © Edit | | Close Class @
+Enter text to filter |Create a regular expression =] Enter text to filter e
+C |\———__—— Technology - ee
+Rules computerworld.com Check the class to display occurrence
+of it in the document.
+a February 3, 2009 (Computerworld) Uncheck All
+Dictic . QO
+ae - The U.S. government has hired Ey DictMonth Q
+No regular expressions are
+EMS defined. IBM to build a supercomputer Q
+
+ 
+
+bei ad with more power than all the
+supercomputers on the Ton500
+
+__4. Click Add Entry.
+
+5. In the Regular Expression field, enter the following expression, which finds years between
+1900 and 2099:
+
+(2: (2?:19|20) [0-9] {2})
+__ 6. Set Minimum Word Tokens to 1 and Maximum Word Tokens to 1.
+
+__7. Click Add to save the regular expression.
+
+Regular Expressions
+
+. Minimum Maximum .
+Regular Expression Word Tokens Word Tokens Action
+
+[(2:¢2:19120)[0-9K 2] fa [5 Cancel | BEXsfe}
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+___8. Enter MyYearExp as the regular expression name, and then, from the Class menu, select
+the RegExpYear class that you defined earlier.
+
+__ 9. Click Save.
+
+ 
+
+© Copyright IBM Corp. 2018 49
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+Regular Expressions
+
+Regular Expressions
+
+Add Entry
+
+Name:
+MyYearExp
+Regular Expression Napier Sone Action
+Class: 6 R Word Tokens Word Tokens
+peSeeneey . (2:(2:19120)[0-9112) 1 I Edit} Selete
+
+ 
+
+Cancel
+
+os
+
+___ 10. After you save the regular expression, it is automatically applied to the sample documents.
+Any text strings that follow the pattern that you defined in the regular expression are annotated
+as mentions of the RegExp Year class.
+
+ 
+
+ 
+
+ 
+
+__11. To check whether the expression you defined is capturing time occurrences correctly, you
+
+can search for mentions. Click the Search annotations in documents icon [s| beside the
+class name RegExpYear in the Class panel.
+
+ 
+
+ 
+
+ 
+
+PS
+
+ 
+
+___ 12. The Find Annotations page is displayed. Occurrences of year mentions are highlighted in
+the sample documents in which they occur.
+
+ 
+
+ 
+
+Regular Expressions © | Close | Class ©
+Ente! to filter ° Find Annotations =] Enter text to filte °
+Select a class from the Class panel or enter the class name
+MyYearExp mo ° , Check the class to display occurrences
+
+    
+
+ 
+
+Results: [§@%styee@l 8 annotations
+
+ 
+
+Text
+
+... February 3, (Computerworld) The U.S.
+government has hired ...
+
+-~ It's expected to be up and running in BEE...
+
+ 
+
+... the teraflop bi
+Laboratories in
+
+was built at Sandia National
+
+ 
+
+... January 29, (Computerworld) Want to know
+if you're...
+
+... The awards, launched by Nikkei Inc. in
+honor people and groups in Asia that have ...
+
+ 
+
+.. “operated directory service TellMe, which
+Microsoft bousht in PITY ...
+
+Part 7. Defining a rule
+
+of it in the document.
+
+Uncheck All
+
+ 
+
+Document
+
+Technology -
+computerworld.com
+
+Technology -
+computerworld.com
+
+Technology -
+computerworld.com
+
+Technology -
+computerworlds.com
+
+Technology -
+exnikkei.com
+
+Technology -
+foxnews.com 1
+
+You already defined a dictionary-based class for annotating month mentions. You also defined a
+
+regular expression that finds numeric values which represent a year. In this part, you will define a
+rule that captures the sequence of a month followed by a number, a comma, and then a year. You
+will define a rule for date expressions like September 21, 2016.
+
+ 
+
+© Copyright IBM Corp. 2018 50
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Perform the following steps:
+
+__ 1. Select Rule-based Model > Rules and open the Technology - computerworld.com
+document.
+
+__ 2. Select the text February 3, 2009 in the document. Make sure you select the comma, too as
+shown in the figure.
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+= Rules © Edit Close
+
+~
+
+Ent Add arule. °
+
+——_| —— Technology -
+computerworld.com
+
+|February| [at] (Computerworld)
+
+The U.S. government has hired
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Dictionaries
+
+No rules are defined. First, select
+laj+ the document text that depicts the IBM to build a su percomputer with
+rule pattern, and then click the
+
+plus sign to add the rule.
+
+es more power than all the
+
+ 
+
+ 
+
+3. Click the Add a rule icon.
+The rule editor shows a depiction of the rule pattern that you identified.
+
+The text February 3, 2009 is visible. A solid line that connects the cells in the depiction
+identifies which cells are currently part of the pattern as in the figure.
+
+e The DictMonth class is part of the rule pattern instead of the text February. This selection
+is preferred because you want the model to find any month that is annotated by the
+DictMonth class as the first token in the date pattern instead of the text February only.
+
+e At the end of the rule, the year 2009 is already annotated as being a mention of the
+RegExpYear class. The RegExpYear Class is part of the rule pattern instead of the number
+2009. This selection is also preferred because you want the model to find any year that is
+annotated by the RegExpYear class as the last token in the date pattern instead of the
+specific text 2009 only.
+
+e The number 3 and the comma (,) after it are shown as the second and third tokens in the
+pattern. As the pattern is currently specified, the model will find only occurrences of dates
+that specify the 3rd day of a month. We want the model to find dates that specify any day
+of the month, so next you will change the feature settings for the day token.
+
+ 
+
+© Copyright IBM Corp. 2018 51
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+Click a word or annotation to adjust the conditions by which it participates in the rule pattern.
+
+v)A) v)A)
+WOO 6
+
+ 
+
+pF
+
+__ 4. Above the day 3 cell, click the Text icon to open the feature settings for the token.
+
+ 
+
+Currently, the rule is set to match the exact text, 3. Instead, we want it to match any number.
+
+ 
+
+   
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+© Feature Setting
+@ Text: 3
+Length: 1
+
+© Part of Speech: numeral
+
+Character Type: Numeric
+
+ 
+
+ 
+
+ 
+
+___5. Change the feature setting to be numeric by selecting Character Type : Numeric, and
+then clearing the selection, Text : 3.
+
+You changed the definition for the number 3 cell. The Character Type icon indicates that
+instead of requiring the number to be equal to 3 exactly, it can be any number.
+
+ 
+
+© Copyright IBM Corp. 2018 52
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+@) Length: 1
+
+(6) Part of Speech: numeral
+@ Character Type: Numeric
+
+ 
+
+( v \(A)
+
+RegExpYear
+
+ 
+
+ 
+
+6. Do not change any settings for the comma token.
+
+You want the third token in the pattern to be a comma, so the current feature setting of text
+
+:, is appropriate.
+
+In addition to a feature setting, each token has a repeat setting. The repeat setting
+specifies how many times the token can be repeated in the text for it to match the pattern.
+
+The current repeat setting of Required (Exactly 1) is appropriate.
+
+ 
+
+ 
+
+ 
+
+rset oh (orl
+
+ 
+
+@ Repeat Setting
+
+Q Required (Exactly 1)
+
+@) Repeating 1 or more times
+®) Repeating 0 or more times
+Q) Occurring 0 or 1 time
+
+Advanced: Exactly 1
+
+ 
+
+ 
+
+__7. Assign a class to represent the pattern DictMonth + numeric token + comma +
+
+RegExpYear.
+
+Notice the four empty cells that represent the four tokens that you selected from the
+document. To select all the cells, select the first cell, and then press Shift + click each
+additional cell. Enter RuleDate as the class name, and then click it to create the new class.
+
+ 
+
+© Copyright IBM Corp. 2018
+
+53
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+[oC Cid
+
+Assign class 2
+
+ 
+
+RuleDatet , conditions by which it participates in the rule pattern.
+
+Create new class:
+RU) =) Bees}
+
+OO
+
+eS
+
+s 6=RegExpYear
+
+ 
+
+   
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+__ 8. Inthe Rule name field, enter MyDateRule and click Save.
+
+ 
+
+= Rules Create a rule
+Enter text to filte e
+
+ 
+
+Open Properties Class ©
+
+ 
+
+ 
+
+Enter text to fil °
+Each cell represents a token in the text that you highlighted from the document. Click a cell to add ¢. ———————
+Rule name:
+
+Check the class to display occurrences
+MyDateRule
+
+of it in the document.
+
+ 
+
+ 
+
+—— | a Ey Uncheck All
+[ones B pve
+a
+RuleDate Q,
+O@ a
+
+ 
+
+Click a word or annotation to adjust the conditions by which it participates in the rule pattern.
+
+ 
+
+aed
+
+ 
+
+C® ©O® YO®O
+
+2009
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+After you save the rule, it is automatically applied to the sample documents.
+
+___9. You can search for all occurrences of RuleDate class mentions in the sample documents
+j i . . . ry
+by clicking the Search annotation in documents icon J next to the RuleDate class from the
+
+Class panel. It is a good practice to check that all dates are captured properly to confirm that
+you defined the pattern correctly as in the figure.
+
+ 
+
+ 
+
+ 
+
+Ea
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+   
+
+Close Class @
+Find Annotations Enter text to filte °
+Select a class from the Class panel or enter the class name —
+RUleDatey Enter cla © OQ Check the class to display occurrences
+of it in the document.
+Uncheck All
+
+Results: RuleDate 2 annotations
+
+Text Document pen
+
+.. February 3, 2009 (Computerworld) The U.S. government has Technology - RuleD:
+
+hired ... computerworld.com
+
+.. January 29, 2009 (Computerworld) Want to know if you're ... Technology -
+computerworlds.com
+
+Part 8. Creating a rule-based model
+
+After defining rules, you can create a rule-based model. The rule-based model can be run as a
+pre-annotator only on documents that were not already annotated by humans.
+
+In this part, you will learn how to create a rule-based model.
+Perform the following steps:
+
+__1. Select Rule-based Model > Versions and click the Rule-based model type mapping tab.
+
+< Back to Workspaces
+
+ 
+
+Versions
+Assets bd
+Rule-based Model * Rule-based Model Rule-based Model Type Mapping
+Rules
+Map entity types from your type system to one or more classes in your
+Versions
+
+rule annotator. You must map at least one class before you can run
+the annotator. Learn more
+Machine Learning
+
+Model
+Pre-annotation .
+Entity Type Name Class Name
+Annotation Tasks
+ORDINAL
+Performance
+MONEY
+Versions
+
+EVENT_VIOLENCE
+
+___2. Map the RuleDate class to the DATE entity from the type system:
+___a. Find the DATE entity (use the filter to find it quickly) and click Edit.
+
+ 
+
+© Copyright IBM Corp. 2018 55
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+Versions
+
+ 
+
+Rule-based Model Rule-based Model Type Mapping
+
+Map entity types from your type system to one or more classes in your
+rule annotator. You must map at least one class before you can run
+the annotator. Learn more
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Q. date}
+Entity Type Name Class Name Actions
+DATE Edit
+___b. Choose the RuleDate class from the list and click Save.
+Versions
+Rule-based Model Rule-based Model Type Mapping
+
+Map entity types from your type system to one or more classes in your
+
+rule annotator. You must map at least one class before you can run
+
+the annotator. Learn more
+
+Q. date °
+
+Entity Type Name Class Name Actions
+
+DATE Enter or select an item name ~ @ Add Cancel | Hew
+DictMonth
+RegExpYear
+
+ESB)
+
+__ 3. To pre-annotate document sets or annotation sets with the rule-based model, select the
+Rule-based Model tab and click Run this model.
+
+ 
+
+Attention: To be able to run the rule-based model successfully, run the rule-based model as a pre-
+annotator only on documents that were not already annotated by humans, so in order to try this
+out you will need to add new documents and try running the newly created rule-based model on it.
+
+ 
+
+ 
+
+© Copyright IBM Corp. 2018
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+Exercises Guide
+
+ 
+
+Exercise review and wrap-up
+
+In this exercise, while learning about Knowledge Studio, you created a workspace and added
+artifacts to it. You then created a machine learning model, trained it, and evaluated how well it
+performed when annotating test data and blind data. By exploring the performance metrics, you
+can identify ways to improve the accuracy of the machine learning model. You created a custom
+machine learning model that you can use with other Watson services.
+
+By completing this exercise, you learned about the following concepts:
+
+Workspaces
+
+Type systems
+Dictionaries
+
+Document sets
+
+Machine learning models
+Human annotation tasks
+
+Inter-annotator agreement and adjudication
+
+If you performed the optional exercise, you created a rule-based model.
+
+By completing the optional exercise, you learned about the following concepts:
+
+Classes
+Regular expressions
+Rules
+
+Ruled-based models
+
+ 
+
+© Copyright IBM Corp. 2018 57
+
+Course materials may not be reproduced in whole or in part without the prior written permission of IBM.
+
